@@ -1,13 +1,3 @@
-That existing data is a great **technical template README** focused on the underlying technology stack (React Router, SSR, Docker, etc.).
-
-Since your project is named **SkillSync** and its purpose is **AI Resume Optimization**, your README needs to focus on the **value, features, and how to use it**, in addition to the existing technical setup.
-
-I recommend you **keep the existing technical sections** (like "Getting Started", "Installation", "Development", and "Deployment") and **replace the introductory and feature sections** with the following project-specific data.
-
-Here is the updated content, ready for your README.md:
-
------
-
 # 🔗 SkillSync: AI-Powered Career Bridge
 
 Welcome to SkillSync\! This application is designed to help job seekers optimize their resumes to pass Applicant Tracking Systems (ATS) and secure interviews. Upload your resume, paste the target job description, and receive instant, actionable feedback.
