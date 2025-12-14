@@ -62,7 +62,7 @@ export const Accordion: React.FC<AccordionProps> = ({
   );
 };
 
-// --- ACCORDION ITEM (THE CARD) ---
+// --- ACCORDION ITEM ---
 interface AccordionItemProps {
   id: string;
   children: ReactNode;
@@ -76,14 +76,14 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
 }) => {
   return (
     <div
-      className={`overflow-hidden rounded-xl border border-slate-700 bg-slate-900/40 transition-colors hover:border-slate-600 ${className}`}
+      className={`overflow-hidden rounded-xl border border-slate-200 bg-white transition-colors hover:border-slate-300 shadow-sm ${className}`}
     >
       {children}
     </div>
   );
 };
 
-// --- ACCORDION HEADER (THE TRIGGER) ---
+// --- ACCORDION HEADER  ---
 interface AccordionHeaderProps {
   itemId: string;
   children: ReactNode;
@@ -109,7 +109,7 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
   const defaultIcon = (
     <svg
       className={cn(
-        "h-5 w-5 text-indigo-400 transition-transform duration-300",
+        "h-5 w-5 text-indigo-600 transition-transform duration-300", // Darker indigo for visibility
         {
           "rotate-180": isActive,
         }
@@ -133,15 +133,15 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
       onClick={handleClick}
       className={`
                 flex w-full cursor-pointer items-center justify-between px-5 py-4 text-left transition-colors duration-200
-                focus:outline-none hover:bg-slate-800/50
-                ${isActive ? "bg-slate-800/30" : ""}
+                focus:outline-none hover:bg-slate-50
+                ${isActive ? "bg-slate-50" : ""}
                 ${className}
             `}
     >
       <div className="flex items-center gap-3">
         {iconPosition === "left" && (icon || defaultIcon)}
 
-        <div className="flex-1 text-base font-semibold text-slate-200">
+        <div className="flex-1 text-base font-semibold text-slate-800">
           {children}
         </div>
       </div>
@@ -150,7 +150,7 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
   );
 };
 
-// --- ACCORDION CONTENT (THE BODY) ---
+// --- ACCORDION CONTENT ---
 interface AccordionContentProps {
   itemId: string;
   children: ReactNode;
@@ -174,7 +174,8 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
             `}
     >
       <div className="overflow-hidden">
-        <div className="border-t border-slate-700/50 bg-slate-900/20 px-5 py-4 text-slate-400 leading-relaxed">
+        {/* Content Area: Light Gray (Slate-50) background, slate-600 text */}
+        <div className="border-t border-slate-200 bg-slate-50 px-5 py-6 text-slate-600 leading-relaxed">
           {children}
         </div>
       </div>

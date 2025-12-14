@@ -49,15 +49,15 @@ const Resume = () => {
   }, [id]);
 
   return (
-    <main className="min-h-screen w-full bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 font-sans text-slate-200">
+    <main className="min-h-screen w-full bg-white font-sans text-slate-900 selection:bg-indigo-100">
       {/* --- NAVBAR --- */}
-      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md p-4">
+      {/* Light Glass Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md p-4">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          {/* LEFT: Back Navigation */}
           <div className="flex items-center gap-3 sm:gap-4">
             <Link
               to="/"
-              className="group flex items-center gap-1 rounded-lg p-2 sm:px-3 sm:py-2 text-sm font-medium text-slate-400 transition-colors hover:bg-slate-800 hover:text-white"
+              className="group flex items-center gap-1 rounded-lg p-2 sm:px-3 sm:py-2 text-sm font-medium text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
             >
               <ChevronLeft className="h-5 w-5 sm:h-4 sm:w-4 transition-transform group-hover:-translate-x-1" />
 
@@ -65,21 +65,20 @@ const Resume = () => {
             </Link>
 
             {/* ---Separator--- */}
-            <div className="h-6 w-px bg-slate-800 hidden sm:block"></div>
+            <div className="h-6 w-px bg-slate-300 hidden sm:block"></div>
 
-            <h1 className="!text-sm sm:!text-xl md:!text-2xl lg:!text-3xl font-semibold text-slate-200">
+            <h1 className="!text-sm sm:!text-xl md:!text-2xl lg:!text-3xl font-bold text-slate-900">
               Analysis Report
             </h1>
           </div>
 
-          {/* RIGHT: Actions */}
           <div className="flex items-center gap-2">
             {resumeUrl && (
               <a
                 href={resumeUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 rounded-lg border border-slate-700 bg-slate-900/50 p-2 sm:px-3 sm:py-2 text-xs font-semibold text-slate-300 transition-all hover:bg-slate-800 hover:text-white"
+                className="flex items-center gap-2 rounded-lg border border-slate-300 bg-white p-2 sm:px-3 sm:py-2 text-xs font-semibold text-slate-700 transition-all hover:bg-slate-50 hover:text-slate-900 hover:shadow-sm"
                 title="View PDF"
               >
                 <FileText className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
@@ -88,7 +87,7 @@ const Resume = () => {
             )}
 
             <button
-              className="flex items-center gap-2 rounded-lg bg-indigo-600 p-2 sm:px-3 sm:py-2 text-xs font-semibold text-white transition-all hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/20"
+              className="flex items-center gap-2 rounded-lg bg-indigo-600 p-2 sm:px-3 sm:py-2 text-xs font-semibold text-white transition-all hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-500/20"
               onClick={() => alert("Share feature coming soon!")}
               title="Share"
             >
@@ -100,13 +99,13 @@ const Resume = () => {
       </header>
 
       {/* --- CONTENT AREA --- */}
-      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
         <section className="flex flex-col gap-6">
-          <div className="flex flex-col gap-2 pb-6">
-            <h2 className="text-3xl font-extrabold text-white sm:text-4xl tracking-tight">
+          <div className="flex flex-col gap-2 pb-6 border-b border-slate-100 mb-6">
+            <h2 className="text-3xl font-extrabold text-slate-900 sm:text-4xl tracking-tight">
               Resume Review
             </h2>
-            <p className="text-slate-400">
+            <p className="text-slate-500 text-lg">
               Here is the detailed breakdown of your resume's performance.
             </p>
           </div>
@@ -121,15 +120,15 @@ const Resume = () => {
               <Details feedback={feedback} />
             </div>
           ) : (
-            <div className="flex min-h-[50vh] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-800 bg-slate-900/30 p-12">
-              <div className="relative h-32 w-32 sm:h-48 sm:w-48 overflow-hidden rounded-full border-4 border-slate-800 bg-slate-900 shadow-2xl">
+            <div className="flex min-h-[50vh] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-12">
+              <div className="relative h-32 w-32 sm:h-48 sm:w-48 overflow-hidden rounded-full border-4 border-slate-200 bg-white shadow-xl">
                 <img
                   src="/images/resume-scan-2.gif"
-                  className="h-full w-full object-cover opacity-80 mix-blend-screen"
+                  className="h-full w-full object-cover opacity-90 mix-blend-multiply"
                   alt="Analyzing..."
                 />
               </div>
-              <h3 className="mt-8 text-xl font-medium text-indigo-300 animate-pulse text-center">
+              <h3 className="mt-8 text-xl font-medium text-indigo-600 animate-pulse text-center">
                 Analyzing Resume...
               </h3>
             </div>

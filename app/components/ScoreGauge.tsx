@@ -12,6 +12,15 @@ const ScoreGauge = ({ score = 75 }: { score: number }) => {
     }
   }, []);
 
+  // Determine colors based on score
+  const getGradientColors = (s: number) => {
+    if (s > 70) return { start: "#34d399", end: "#059669" };
+    if (s > 49) return { start: "#fbbf24", end: "#d97706" };
+    return { start: "#fb7185", end: "#e11d48" };
+  };
+
+  const { start, end } = getGradientColors(score);
+
   return (
     <div className="flex flex-col items-center">
       <div className="relative w-40 h-20">
@@ -24,21 +33,19 @@ const ScoreGauge = ({ score = 75 }: { score: number }) => {
               x2="100%"
               y2="0%"
             >
-              <stop offset="0%" stopColor="#a78bfa" />
-              <stop offset="100%" stopColor="#fca5a5" />
+              <stop offset="0%" stopColor={start} />
+              <stop offset="100%" stopColor={end} />
             </linearGradient>
           </defs>
 
-          {/* Background arc */}
           <path
             d="M10,50 A40,40 0 0,1 90,50"
             fill="none"
-            stroke="#e5e7eb"
+            stroke="#e2e8f0"
             strokeWidth="10"
             strokeLinecap="round"
           />
 
-          {/* Foreground arc with rounded ends */}
           <path
             ref={pathRef}
             d="M10,50 A40,40 0 0,1 90,50"
@@ -48,11 +55,12 @@ const ScoreGauge = ({ score = 75 }: { score: number }) => {
             strokeLinecap="round"
             strokeDasharray={pathLength}
             strokeDashoffset={pathLength * (1 - percentage)}
+            className="transition-all duration-1000 ease-out"
           />
         </svg>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
-          <div className="text-white text-xl font-semibold pt-4">
+          <div className="text-slate-900 text-2xl font-bold pt-4">
             {score}/100
           </div>
         </div>

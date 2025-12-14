@@ -1,5 +1,4 @@
 import { type FormEvent, useState } from "react";
-
 import Navbar from "~/components/Navbar";
 import FileUploader from "~/components/FileUploader";
 import { usePuterStore } from "~/lib/puter";
@@ -12,8 +11,6 @@ export const meta = () => [
   { title: "Resumind | Upload" },
   { name: "description", content: "Upload your resume" },
 ];
-
-
 
 const Upload = () => {
   const { auth, isLoading, fs, ai, kv } = usePuterStore();
@@ -100,36 +97,37 @@ const Upload = () => {
     handleAnalyze({ companyName, jobTitle, jobDescription, file });
   };
 
-  // ---STYLING CONSTANTS---
   const inputClasses =
-    "!text-black block w-full rounded-lg border border-slate-700 bg-slate-900/50 p-3 text-white placeholder-slate-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all";
-  const labelClasses = "mb-2 block text-sm font-medium text-slate-300";
+    "block w-full rounded-lg border border-slate-300 bg-white p-3 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition-all shadow-sm";
+
+  const labelClasses = "mb-2 block text-sm font-medium text-slate-700";
 
   return (
-    <main className="min-h-screen w-full bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-slate-200 font-sans selection:bg-indigo-500/30">
+    <main className="min-h-screen w-full bg-white text-slate-900 font-sans selection:bg-indigo-100">
       <Navbar />
 
       <section className="mx-auto max-w-3xl px-4 py-16">
         <div className="flex flex-col items-center justify-center text-center">
-          <h1 className="text-4xl font-extrabold text-white sm:text-5xl mb-4">
-            Smart feedback for your dream job
+          <h1 className="text-4xl font-extrabold text-slate-600 sm:text-5xl mb-4 tracking-tight">
+            Smart feedback for your{" "}
+            <span className="text-indigo-600">dream job</span>
           </h1>
 
           {isProcessing ? (
-            <div className="mt-8 w-full max-w-xl flex flex-col items-center rounded-xl bg-slate-900/50 p-8 border border-slate-800 backdrop-blur-sm">
-              <h2 className="text-xl font-semibold text-indigo-300 animate-pulse mb-6">
+            <div className="mt-8 w-full max-w-xl flex flex-col items-center rounded-xl bg-white p-8 border border-slate-200 shadow-xl">
+              <h2 className="text-xl font-semibold text-indigo-600 animate-pulse mb-6">
                 {statusText}
               </h2>
               <div className="relative w-full flex items-center justify-center overflow-hidden rounded-lg">
                 <img
                   src="/images/resume-scan.gif"
-                  className="w-[200px] opacity-90 mix-blend-screen"
+                  className="w-[200px] opacity-100 mix-blend-multiply"
                   alt="Scanning Resume"
                 />
               </div>
             </div>
           ) : (
-            <h2 className="text-lg text-slate-400 max-w-xl">
+            <h2 className="text-lg text-slate-600 max-w-xl">
               Drop your resume below to receive an ATS score and personalized
               improvement tips.
             </h2>
@@ -139,7 +137,7 @@ const Upload = () => {
             <form
               id="upload-form"
               onSubmit={handleSubmit}
-              className="mt-10 w-full rounded-2xl bg-slate-900/40 border border-slate-800 p-6 md:p-8 backdrop-blur-sm shadow-2xl"
+              className="mt-10 w-full rounded-2xl bg-white border border-slate-200 p-6 md:p-8 shadow-2xl shadow-slate-200/50"
             >
               <div className="flex flex-col gap-6 w-full">
                 <div className="text-left w-full">
@@ -185,14 +183,14 @@ const Upload = () => {
                   <label htmlFor="uploader" className={labelClasses}>
                     Upload Resume
                   </label>
-                  <div className="w-full overflow-hidden rounded-lg border border-slate-700 bg-slate-900/50">
+                  <div className="w-full overflow-hidden rounded-lg border border-slate-300 bg-slate-50">
                     <FileUploader onFileSelect={handleFileSelect} />
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="mt-4 w-full rounded-lg bg-indigo-600 px-6 py-4 text-lg font-bold text-white transition-all hover:bg-indigo-500 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95"
+                  className="mt-4 w-full rounded-lg bg-indigo-600 px-6 py-4 text-lg font-bold text-white transition-all hover:bg-indigo-700 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-95 cursor-pointer"
                 >
                   Analyze Resume
                 </button>

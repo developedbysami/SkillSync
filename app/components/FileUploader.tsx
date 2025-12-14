@@ -7,23 +7,20 @@ interface FileUploaderProps {
 }
 
 const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
-  // 1. ADD LOCAL STATE: This lets us manually clear the file from the UI
   const [file, setFile] = useState<File | null>(null);
 
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const selectedFile = acceptedFiles[0] || null;
 
-      // Update local state and parent state
       setFile(selectedFile);
       onFileSelect?.(selectedFile);
     },
     [onFileSelect]
   );
 
-  // 2. REMOVE FUNCTION: Clears both states
   const removeFile = (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation(); // Prevents opening the file picker again
+    e.stopPropagation();
     setFile(null);
     onFileSelect?.(null);
   };
@@ -42,21 +39,20 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
       <div
         {...getRootProps()}
         className={`
-                    relative flex cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed p-6 transition-all
-                    ${
-                      isDragActive
-                        ? "border-indigo-500 bg-indigo-500/10"
-                        : "border-slate-700 bg-slate-900/50 hover:border-slate-500 hover:bg-slate-800"
-                    }
-                `}
+            relative flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 border-dashed p-6 transition-all duration-200 ease-in-out
+            ${
+              isDragActive
+                ? "border-indigo-500 bg-indigo-50"
+                : "border-slate-300 bg-slate-50 hover:border-slate-400 hover:bg-slate-100"
+            }
+        `}
       >
         <input {...getInputProps()} />
 
         {file ? (
-          // STATE: FILE SELECTED
           <div
-            className="flex w-full items-center justify-between rounded-lg bg-slate-800 p-4 border border-slate-700"
-            onClick={(e) => e.stopPropagation()} // Stop click from bubbling to dropzone
+            className="flex w-full items-center justify-between rounded-lg bg-white p-4 border border-slate-200 shadow-sm"
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center space-x-4 overflow-hidden">
               <img
@@ -65,11 +61,12 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                 className="w-10 h-10 object-contain"
               />
 
-              <div className="flex flex-col overflow-hidden">
-                <p className="truncate text-sm font-medium text-white max-w-[200px] sm:max-w-xs">
+              <div className="flex flex-col overflow-hidden text-left">
+                <p className="truncate text-sm font-semibold text-slate-900 max-w-[200px] sm:max-w-xs">
                   {file.name}
                 </p>
-                <p className="text-xs text-slate-400">
+
+                <p className="text-xs text-slate-500">
                   {formatSize(file.size)}
                 </p>
               </div>
@@ -78,34 +75,33 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
             {/* REMOVE BUTTON */}
             <button
               type="button"
-              className="rounded-full p-2 text-slate-400 hover:bg-slate-700 hover:text-white transition-colors"
+              className="rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-red-500 transition-colors cursor-pointer"
               onClick={removeFile}
             >
               <img
                 src="/icons/cross.svg"
                 alt="remove"
-                className="w-5 h-5 invert opacity-70 hover:opacity-100"
+                className="w-5 h-5 opacity-60 hover:opacity-100"
               />
             </button>
           </div>
         ) : (
-          // STATE: EMPTY / DROPZONE
-          <div className="flex flex-col items-center justify-center text-center space-y-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-800">
+          <div className="flex flex-col items-center justify-center text-center space-y-4">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 border border-slate-200">
               <img
                 src="/icons/info.svg"
                 alt="upload"
-                className="w-6 h-6 invert opacity-50"
+                className="w-5 h-5 opacity-60"
               />
             </div>
             <div>
-              <p className="text-lg text-slate-300">
-                <span className="font-semibold text-indigo-400 hover:underline">
+              <p className="text-lg text-slate-600">
+                <span className="font-semibold text-indigo-600 hover:underline hover:text-indigo-700">
                   Click to upload
                 </span>{" "}
                 or drag and drop
               </p>
-              <p className="text-sm text-slate-500">
+              <p className="text-sm text-slate-500 mt-1">
                 PDF (max {formatSize(maxFileSize)})
               </p>
             </div>

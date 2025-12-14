@@ -13,23 +13,32 @@ interface ATSProps {
 const getScoreTheme = (score: number) => {
   if (score > 69)
     return {
-      border: "border-emerald-500/50",
-      iconColor: "text-emerald-400",
-      titleColor: "text-emerald-400",
-      badgeBg: "bg-emerald-500/10 text-emerald-300",
+      border: "border-emerald-200",
+      iconColor: "text-emerald-600",
+      iconBg: "bg-emerald-100",
+      titleColor: "text-emerald-700",
+      badgeBg: "bg-emerald-100 text-emerald-800",
+      cardBorder: "border-emerald-500",
+      iconContainer: "bg-emerald-100 text-emerald-600",
     };
   if (score > 49)
     return {
-      border: "border-amber-500/50",
-      iconColor: "text-amber-400",
-      titleColor: "text-amber-400",
-      badgeBg: "bg-amber-500/10 text-amber-300",
+      border: "border-amber-200",
+      iconColor: "text-amber-600",
+      iconBg: "bg-amber-100",
+      titleColor: "text-amber-700",
+      badgeBg: "bg-amber-100 text-amber-800",
+      cardBorder: "border-amber-500",
+      iconContainer: "bg-amber-100 text-amber-600",
     };
   return {
-    border: "border-rose-500/50",
-    iconColor: "text-rose-400",
-    titleColor: "text-rose-400",
-    badgeBg: "bg-rose-500/10 text-rose-300",
+    border: "border-rose-200",
+    iconColor: "text-rose-600",
+    iconBg: "bg-rose-100",
+    titleColor: "text-rose-700",
+    badgeBg: "bg-rose-100 text-rose-800",
+    cardBorder: "border-rose-500",
+    iconContainer: "bg-rose-100 text-rose-600",
   };
 };
 
@@ -41,16 +50,15 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
     score > 69 ? "Great Job!" : score > 49 ? "Good Start" : "Needs Improvement";
 
   return (
-    // MAIN CARD: Dark Glass with Colored Border
     <div
-      className={`w-full rounded-2xl border bg-slate-900/60 p-6 backdrop-blur-md shadow-lg ${theme.border}`}
+      className={`w-full rounded-2xl border bg-white p-6 shadow-xl shadow-slate-200/50 ${theme.border}`}
     >
       {/* HEADER SECTION */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-slate-700/50 pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-slate-100 pb-6">
         <div className="flex items-center gap-4">
           {/* Dynamic Score Icon Wrapper */}
           <div
-            className={`flex h-14 w-14 items-center justify-center rounded-full bg-slate-800 ${theme.iconColor}`}
+            className={`flex h-14 w-14 items-center justify-center rounded-full ${theme.iconBg} ${theme.iconColor}`}
           >
             {score > 69 ? (
               <svg
@@ -86,7 +94,7 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
           </div>
 
           <div>
-            <h2 className="text-2xl font-bold text-white">ATS Score</h2>
+            <h2 className="text-2xl font-bold text-slate-900">ATS Score</h2>
             <div
               className={`text-sm sm:text-lg mt-1 inline-flex items-center rounded px-2.5 py-0.5 font-medium ${theme.badgeBg}`}
             >
@@ -100,13 +108,13 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
           <h3 className={`text-xl font-bold ${theme.titleColor}`}>
             {subtitle}
           </h3>
-          <p className="text-sm sm:text-lg text-slate-400">ATS Compatibility</p>
+          <p className="text-sm sm:text-lg text-slate-500">ATS Compatibility</p>
         </div>
       </div>
 
       {/* CONTENT SECTION */}
       <div>
-        <p className="text-sm sm:text-lg text-slate-400 mb-6 leading-relaxed">
+        <p className="text-sm sm:text-lg text-slate-600 mb-6 leading-relaxed">
           This score represents how well your resume is likely to perform in
           Applicant Tracking Systems used by employers.
         </p>
@@ -116,7 +124,7 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
           {suggestions.map((suggestion, index) => (
             <div
               key={index}
-              className={`flex items-start gap-4 rounded-lg border border-slate-800 bg-slate-900/50 p-4 transition-colors hover:bg-slate-800 ${
+              className={`flex items-start gap-4 rounded-lg border border-slate-200 bg-slate-50 p-4 transition-colors hover:bg-white hover:shadow-sm ${
                 suggestion.type === "good"
                   ? "border-l-4 border-l-emerald-500"
                   : "border-l-4 border-l-amber-500"
@@ -124,7 +132,7 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
             >
               <div className="shrink-0 mt-0.5">
                 {suggestion.type === "good" ? (
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-600">
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -140,7 +148,7 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
                     </svg>
                   </div>
                 ) : (
-                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/20 text-amber-400">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-100 text-amber-600">
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -158,7 +166,7 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
                 )}
               </div>
 
-              <p className="text-sm sm:text-lg text-slate-300 leading-snug">
+              <p className="text-sm sm:text-lg text-slate-700 leading-snug">
                 {suggestion.tip}
               </p>
             </div>
@@ -167,7 +175,7 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
       </div>
 
       {/* FOOTER */}
-      <div className="mt-6 pt-6 border-t border-slate-700/50">
+      <div className="mt-6 pt-6 border-t border-slate-100">
         <p className="text-sm sm:text-lg text-slate-500 italic">
           Keep refining your resume to improve your chances of getting past ATS
           filters and into the hands of recruiters.
