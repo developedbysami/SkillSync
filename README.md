@@ -14,7 +14,7 @@ Welcome to SkillSync\! This application is designed to help job seekers optimize
 
 The SkillSync application is currently hosted and available here:
 
-**[Insert Your Project's Live URL Here]**
+**https://skillsync-crq2lxlox-samis-projects-f1b2fa9c.vercel.app**
 
 -----
 
